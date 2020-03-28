@@ -1,64 +1,19 @@
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+ .LAb: Design Principals Lab                                         +
+//+ .LANGUAGE: Java                                                     +
+//+ .AUTHOR: Neil Morrison                                              +
+//+ .COLLEGE: Galway-Mayo institute of Technology                       +
+//+ .DATE: 25/03/20202                                                  +
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 package ie.gmit.open;
 
 import java.util.List;
 
-public class PhoneSubscriber {
-
-    private Long subscriberId;
-
-    private String address;
-
-    private Long phoneNumber;
+public abstract class PhoneSubscriber  extends Subscriber{
 
     private int baseRate;
 
-    public double calculateBill() {
-        List<CallHistory.Call> sessions = CallHistory.getCurrentCalls(subscriberId);
-        long totalDuration = sessions.stream().mapToLong(CallHistory.Call::getDuration).sum();
-        return totalDuration*baseRate/100;
-    }
-
-    /**
-     * @return the subscriberId
-     */
-    public Long getSubscriberId() {
-        return subscriberId;
-    }
-
-    /**
-     * @param subscriberId the subscriberId to set
-     */
-    public void setSubscriberId(Long subscriberId) {
-        this.subscriberId = subscriberId;
-    }
-
-    /**
-     * @return the address
-     */
-    public String getAddress() {
-        return address;
-    }
-
-    /**
-     * @param address the address to set
-     */
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    /**
-     * @return the phoneNumber
-     */
-    public Long getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    /**
-     * @param phoneNumber the phoneNumber to set
-     */
-    public void setPhoneNumber(Long phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+    public abstract double calculateBill();
 
     /**
      * @return the baseRate

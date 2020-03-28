@@ -1,3 +1,10 @@
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+ .LAb: Design Principals Lab                                         +
+//+ .LANGUAGE: Java                                                     +
+//+ .AUTHOR: Neil Morrison                                              +
+//+ .COLLEGE: Galway-Mayo institute of Technology                       +
+//+ .DATE: 25/03/20202                                                  +
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 package ie.gmit.open;
 
 import java.time.LocalDateTime;
@@ -10,13 +17,13 @@ import java.util.Map;
 public class InternetSessionHistory {
 
     public static class InternetSession {
-        
+
         private LocalDateTime begin;
 
         private Long subscriberId;
 
         private Long dataUsed;
-        
+
         public InternetSession(Long subscriberId, LocalDateTime begin, long dataUsed) {
             this.begin = begin;
             this.dataUsed = dataUsed;

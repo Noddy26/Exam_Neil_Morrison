@@ -1,3 +1,10 @@
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+ .LAb: Design Principals Lab                                         +
+//+ .LANGUAGE: Java                                                     +
+//+ .AUTHOR: Neil Morrison                                              +
+//+ .COLLEGE: Galway-Mayo institute of Technology                       +
+//+ .DATE: 25/03/20202                                                  +
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 package ie.gmit.open;
 
 import java.time.LocalDateTime;
@@ -10,9 +17,9 @@ import java.util.Map;
 public class CallHistory {
 
     public static class Call {
-        
+
         private LocalDateTime begin;
-        
+
         private long duration;
 
         private Long subscriberId;
