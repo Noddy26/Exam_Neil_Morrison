@@ -1,6 +1,12 @@
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+ .LAb: Design Principals Lab                                         +
+//+ .LANGUAGE: Java                                                     +
+//+ .AUTHOR: Neil Morrison                                              +
+//+ .COLLEGE: Galway-Mayo institute of Technology                       +
+//+ .DATE: 25/03/20202                                                  +
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 package ie.gmit.single;
 
-//User
 public class User {
 
     private String name;
@@ -61,10 +67,10 @@ public class User {
         this.address = address;
     }
 
-	@Override
-	public String toString() {
-		return "User [name=" + name + ", email=" + email + ", address=" + address + "]";
-	}
+    @Override
+    public String toString() {
+        return "User [name=" + name + ", email=" + email + ", address=" + address + "]";
+    }
 
-    
+
 }

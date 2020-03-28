@@ -1,3 +1,10 @@
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+ .LAb: Design Principals Lab                                         +
+//+ .LANGUAGE: Java                                                     +
+//+ .AUTHOR: Neil Morrison                                              +
+//+ .COLLEGE: Galway-Mayo institute of Technology                       +
+//+ .DATE: 25/03/20202                                                  +
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 package ie.gmit.single;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,61 +17,26 @@ public class UserController {
 
     //Handles incoming JSON requests that work on User resource/entity
 
-        //Store used by controller
-        private Store store = new Store();
+    //Store used by controller
+    private UserStorage persistenceService = new UserStorage();
 
-        //Create a new user
-        public String createUser(String userJson) throws IOException {
-            ObjectMapper mapper = new ObjectMapper();
+    //Create a new user
+    public String createUser(String userJson) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
 
-            User user = mapper.readValue(userJson, User.class);
+        User user = mapper.readValue(userJson, User.class);
 
-            if(!isValidUser(user)) {
-                return "ERROR";
-            }
+        ValidateUser myUser = new ValidateUser();
 
-            store.store(user);
+        boolean checkedUser = myUser.checkUser(user);
 
-            return "SUCCESS";
+        if (!checkedUser) {
+            return "ERROR";
         }
 
-        //Validates the user object
-        private boolean isValidUser(User user) {
-            if(!isPresent(user.getName())) {
-                return false;
-            }
-            user.setName(user.getName().trim());
+        persistenceService.saveUser(user);
 
-            if(!isValidAlphaNumeric(user.getName())) {
-                return false;
-            }
-            if(user.getEmail() == null || user.getEmail().trim().length() == 0) {
-                return false;
-            }
-            user.setEmail(user.getEmail().trim());
-            if(!isValidEmail(user.getEmail())) {
-                return false;
-            }
-            return true;
-        }
 
-        //Simply checks if value is null or empty..
-        private boolean isPresent(String value) {
-            return value != null && value.trim().length() > 0;
-        }
-        //check string for special characters
-        private boolean isValidAlphaNumeric(String value) {
-            Pattern pattern = Pattern.compile("[^A-Za-z0-9]");
-            Matcher matcher = pattern.matcher(value);
-            return !matcher.find();
-        }
-        //check string for valid email address - this is not for prod.
-        //Just for demo. This fails for lots of valid emails.
-        private boolean isValidEmail(String value) {
-            Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-            Matcher matcher = pattern.matcher(value);
-            return matcher.find();
-        }
-
- }
-
+        return "SUCCESS";
+    }
+}
